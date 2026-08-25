@@ -7,7 +7,7 @@ from flask import Flask, request, jsonify, render_template, send_from_directory
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
 MODEL_PATH = 'models/e20wise_model.pkl'
-DATA_PATH = 'data/e20wise_vehicle_dataset.csv'
+DATA_PATH = 'data/e20wise_vehicle_dataset_50k.csv'
 
 # Global variables for model and encoders
 model_data = None

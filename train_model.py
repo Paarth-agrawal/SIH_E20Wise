@@ -11,7 +11,7 @@ def train():
     print("Starting E20Wise model training...")
     
     # 1. Load dataset
-    data_path = 'data/e20wise_vehicle_dataset.csv'
+    data_path = 'data/e20wise_vehicle_dataset_50k.csv'
     if not os.path.exists(data_path):
         raise FileNotFoundError(f"Dataset not found at {data_path}")
         
