@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E20Wise | AI-Powered Personalised Fuel Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="glow-bg"></div>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1>E20Wise</h1>
+                    <p class="tagline">Personalised Fuel Intelligence</p>
+                </div>
+            </div>
+            <div class="header-status">
+                <span class="pulse-dot"></span>
+                <span class="status-text">Continuous Learning Loop: Active</span>
+            </div>
+        </header>
+
+        <!-- DASHBOARD GRID -->
+        <div class="dashboard-grid">
+            
+            <!-- LEFT PANEL: VEHICLE PROFILER -->
+            <section class="card glass-card profiler-section">
+                <h2><span class="icon">🚗</span> Vehicle Digital Profile</h2>
+                <p class="section-desc">Provide vehicle details and driving telemetry to run the AI engine.</p>
+                
+                <form id="profiler-form">
+                    <div class="form-group">
+                        <label for="vehicle_model">Vehicle Model</label>
+                        <select id="vehicle_model" required>
+                            <option value="" disabled selected>Select Model</option>
+                            <!-- Models will be populated dynamically -->
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="vehicle_year">Manufacturing Year</label>
+                            <input type="number" id="vehicle_year" min="2005" max="2026" value="2018" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="engine_cc">Engine Capacity (CC)</label>
+                            <input type="number" id="engine_cc" min="600" max="3000" value="1197" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="transmission_type">Transmission</label>
+                            <select id="transmission_type" required>
+                                <option value="Manual">Manual</option>
+                                <option value="Automatic">Automatic</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="odometer_km">Odometer Reading (km)</label>
+                            <input type="number" id="odometer_km" min="0" value="45000" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="current_mileage">Baseline Mileage (km/L)</label>
+                            <input type="number" id="current_mileage" step="0.1" min="5" max="35" value="17.5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="daily_distance_km">Daily Distance (km)</label>
+                            <input type="number" id="daily_distance_km" min="1" max="500" value="30" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="label-row">
+                            <label for="city_driving_percent">Driving Environment</label>
+                            <span id="driving-split-val">50% City / 50% Highway</span>
+                        </div>
+                        <input type="range" id="city_driving_percent" min="0" max="100" value="50">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="driving_style">Driving Style</label>
+                            <select id="driving_style" required>
+                                <option value="Calm">Calm (Eco)</option>
+                                <option value="Moderate" selected>Moderate</option>
+                                <option value="Aggressive">Aggressive</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ac_usage_percent">AC Usage (%)</label>
+                            <input type="number" id="ac_usage_percent" min="0" max="100" value="50" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="traffic_level">Typical Traffic</label>
+                            <select id="traffic_level" required>
+                                <option value="Low">Low</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="region">Region (State)</label>
+                            <select id="region" required>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row price-inputs">
+                        <div class="form-group">
+                            <label for="fuel_price">Regular Fuel Price (₹/L)</label>
+                            <input type="number" id="fuel_price" step="0.1" value="104.2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="e20_fuel_price">E20 Fuel Price (₹/L)</label>
+                            <input type="number" id="e20_fuel_price" step="0.1" value="101.5" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="btn-analyse">
+                        <span class="btn-text">Analyse Vehicle E20 Impact</span>
+                        <div class="spinner hidden"></div>
+                    </button>
+                </form>
+            </section>
+
+            <!-- RIGHT PANEL: PREDICTIONS & INSIGHTS -->
+            <div class="results-column">
+                
+                <!-- ROW 1: PRIMARY METRICS -->
+                <div class="metrics-grid">
+                    <div class="card glass-card score-card">
+                        <h3>E20 Performance Score</h3>
+                        <div class="score-container">
+                            <div class="circular-progress" id="score-circle">
+                                <span class="score-value" id="score-val">--</span>
+                            </div>
+                        </div>
+                        <div class="score-status" id="score-status">Pending Analysis</div>
+                    </div>
+
+                    <div class="card glass-card mileage-drop-card">
+                        <h3>Predicted Mileage Drop</h3>
+                        <div class="drop-value-wrapper">
+                            <span class="drop-val" id="drop-val">--</span>
+                            <span class="drop-unit">%</span>
+                        </div>
+                        <div class="mileage-comparison">
+                            <div>E0/E10: <strong id="base-mileage-val">--</strong> km/L</div>
+                            <div>E20 Predict: <strong id="e20-mileage-val">--</strong> km/L</div>
+                        </div>
+                    </div>
+
+                    <div class="card glass-card confidence-card">
+                        <h3>Prediction Confidence</h3>
+                        <div class="confidence-container">
+                            <span class="confidence-val" id="confidence-val">--</span>
+                            <span class="confidence-unit">%</span>
+                        </div>
+                        <p class="confidence-desc">Based on AI training density & specs</p>
+                    </div>
+                </div>
+
+                <!-- ROW 2: FINANCIAL & ENVIRONMENTAL IMPACTS -->
+                <div class="impact-grid">
+                    <div class="card glass-card financial-card">
+                        <div class="impact-header">
+                            <h3>Annual Financial Projections</h3>
+                            <span class="badge" id="savings-badge">₹0 saved</span>
+                        </div>
+                        <div class="bar-chart-container">
+                            <canvas id="financialChart"></canvas>
+                        </div>
+                        <div class="cost-details">
+                            <div class="cost-item">
+                                <span>Regular Petrol cost:</span>
+                                <span id="annual-cost-regular">₹0</span>
+                            </div>
+                            <div class="cost-item">
+                                <span>E20 Petrol cost:</span>
+                                <span id="annual-cost-e20">₹0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card glass-card environmental-card">
+                        <div class="impact-header">
+                            <h3>Environmental Footprint</h3>
+                            <span class="badge green-badge" id="co2-badge">0 kg saved</span>
+                        </div>
+                        <div class="env-visual">
+                            <div class="tree-icon">
+                                <svg viewBox="0 0 24 24" width="50" height="50" fill="none" stroke="#2ecc71" stroke-width="2">
+                                    <path d="M12 22V12M12 12c2.5 0 4.5-2 4.5-4.5S14.5 3 12 3 7.5 5 7.5 7.5 9.5 12 12 12z"/>
+                                </svg>
+                            </div>
+                            <div class="env-stats">
+                                <div class="env-val-big" id="trees-val">0.0</div>
+                                <div class="env-desc">Equivalent trees planted per year</div>
+                            </div>
+                        </div>
+                        <p class="env-footer">Ethanol blending reduces tailpipe and lifecycle CO2 greenhouse gas emissions by up to 16% in E20 blends.</p>
+                    </div>
+                </div>
+
+                <!-- ROW 3: MAINTENANCE CHECKLIST -->
+                <section class="card glass-card checklist-section">
+                    <h2>🔧 Personalized E20 Action Plan</h2>
+                    <p class="section-desc">Dynamic maintenance checklist tailored for your vehicle profile.</p>
+                    <div class="checklist-items" id="checklist-container">
+                        <div class="empty-state">Enter vehicle details and press "Analyse" to generate your custom action plan.</div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ROW 4: REGIONAL MAPPING & CROWDSOURCING -->
+        <div class="secondary-grid">
+            <section class="card glass-card regional-section">
+                <h2>📍 Regional E20 Impact Map & Analytics</h2>
+                <p class="section-desc">Crowdsourced real-world vehicle insights across states in India.</p>
+                <div class="regional-container">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                border: none;
+                                <tr>
+                                    <th>Region (State)</th>
+                                    <th>Avg fuel price (₹)</th>
+                                    <th>Avg mileage drop (%)</th>
+                                    <th>Reports registered</th>
+                                </tr>
+                            </thead>
+                            <tbody id="regional-table-body">
+                                <tr>
+                                    <td colspan="4" class="text-center">Loading regional database...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="regional-insights-card">
+                        <h3>National E20 Insights</h3>
+                        <div class="stat-box">
+                            <span class="stat-num" id="total-reports-val">5000</span>
+                            <span class="stat-lbl">Active Telemetry Submissions</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-num" id="avg-national-drop-val">3.25%</span>
+                            <span class="stat-lbl">Average National E20 Mileage Drop</span>
+                        </div>
+                        <p class="stat-footer-text">Data is parsed directly from Indian roads, continuously retraining the E20Wise Random Forest regressors.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CROWDSOURCING LOOP FORM -->
+            <section class="card glass-card feedback-section">
+                <h2>🔁 Continuous Learning Loop (Crowdsource)</h2>
+                <p class="section-desc">Contribute your vehicle's telemetry to retrain the ML models dynamically.</p>
+                <form id="feedback-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fb_vehicle_model">Vehicle Model</label>
+                            <select id="fb_vehicle_model" required>
+                                <option value="" disabled selected>Select Model</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fb_vehicle_year">Year</label>
+                            <input type="number" id="fb_vehicle_year" min="2005" max="2026" value="2020" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fb_current_mileage">Regular Mileage (km/L)</label>
+                            <input type="number" id="fb_current_mileage" step="0.1" value="18.0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fb_e20_mileage">Actual E20 Mileage (km/L)</label>
+                            <input type="number" id="fb_e20_mileage" step="0.1" value="17.4" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fb_driving_style">Driving Style</label>
+                            <select id="fb_driving_style" required>
+                                <option value="Calm">Calm (Eco)</option>
+                                <option value="Moderate" selected>Moderate</option>
+                                <option value="Aggressive">Aggressive</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fb_region">Your Region</label>
+                            <select id="fb_region" required>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Kerala">Kerala</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" id="btn-submit-feedback">
+                        <span class="btn-text">Submit Telemetry & Retrain Model</span>
+                        <div class="spinner hidden"></div>
+                    </button>
+                </form>
+            </section>
+        </div>
+    </div>
+    
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
